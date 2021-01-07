@@ -16,7 +16,9 @@ SRC = can_open.c	\
 	add_node.c	\
 	free_list.c	\
 	good_extension.c	\
-	duplicate_str.c
+	duplicate_str.c	\
+	check_end_of_lines.c	\
+	display_resume.c
 
 OBJ = $(SRC:.c=.o)
 

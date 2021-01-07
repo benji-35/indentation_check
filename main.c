@@ -24,14 +24,13 @@ int main(int argc, char **argv)
 {
     int indentation = 4;
     int size = 0;
+    int check_end = 0;
+    int nb_spaces = 0;
+    int nb_inden = 0;
     list *ext = NULL;
     if (argc < 2) {
         printf("[\e[5;31mERROR\e[0m] ./indentation <file> ...\n");
         return (84);
-    }
-    if (str_equality(argv[1], "-h")) {
-        display_help();
-        return (0);
     }
     for (int i = 1; i < argc; i++) {
         if (str_equality(argv[i], "-i")) {
@@ -46,24 +45,29 @@ int main(int argc, char **argv)
             display_help();
             return (0);
         }
+        if (str_equality(argv[i], "-s"))
+            check_end = 1;
     }
     display_wont(ext);
     for (int i = 1; i < argc; i++) {
-        if (str_equality(argv[i], "-u")) {
+        if (str_equality(argv[i], "-s"))
+            i++;
+        if (str_equality(argv[i], "-u"))
             i+= 1 + size;
-        }
         if (str_equality(argv[i], "-i"))
             i+=2;
         if (str_equality(argv[i], "-*")) {
             i++;
-            check_directory(argv[i], indentation, ext);
+            check_directory(argv[i], indentation, ext, check_end, &nb_inden, &nb_spaces);
         } else if (can_open(argv[i])) {
             char *read = read_file(argv[i]);
-            check_indentation(argv[i], read, indentation, ext);
+            check_indentation(argv[i], read, indentation, ext, &nb_inden);
+            if (check_end)
+                check_end_of_line(argv[i], read, indentation, ext, &nb_spaces);
             free(read);
         }
     }
     free_list(ext);
-    printf("End check\n");
+    display_resume(nb_inden, nb_spaces, check_end);
     return (0);
 }

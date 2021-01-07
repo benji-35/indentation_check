@@ -21,6 +21,7 @@ void display_help(void)
     printf("2. -h -> display help of command\n");
     printf("3. -u <exentension> -> don't check files with the extension\n");
     printf("4. -i <indentation> -> no -i equal 4 spaces for 1 indentation\n");
+    printf("5. -s -> check spaces at the end of lines\n");
     printf("\n\nUsage :\n");
     printf(" Normal : ./indentation my_file\n");
     printf(" Many files : ./indentation my_file my_file2 my_file3\n");

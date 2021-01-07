@@ -33,15 +33,16 @@ int get_line_by_char(char *read, int c)
     return (nb);
 }
 
-void display_checking(int __char, int number, char *path, char *read, int inden)
+void display_checking(int __char, int number, char *path, char *read, int inden, int *nb_inden)
 {
     if (divisible_by(number, inden) || number == 0)
         return;
-    printf("[\e[1;5;32mWARNING\e[0m] line: %d, path : %s get %d spaces, want : %d\n", get_line_by_char(read, __char),
+    printf("[\e[1;5;32mINDENTATION\e[0m] line: %d, path : %s get %d spaces, want : %d\n", get_line_by_char(read, __char),
     path, number, inden);
+    *nb_inden = *nb_inden + 1;
 }
 
-void verif(char *read, int *i, int *curr_spaces, char *path, int size, int inden)
+void verif(char *read, int *i, int *curr_spaces, char *path, int size, int inden, int *nb_inden)
 {
     if (read[*i] == '\n') {
         *curr_spaces = 0;
@@ -55,7 +56,7 @@ void verif(char *read, int *i, int *curr_spaces, char *path, int size, int inden
         }
         return;
     }
-    display_checking(*i, *curr_spaces, path, read, inden);
+    display_checking(*i, *curr_spaces, path, read, inden, nb_inden);
     for (; read[*i] != 0; *i = *i + 1) {
         if (read[*i] == '\n') {
             *i = *i + 1;
@@ -65,10 +66,10 @@ void verif(char *read, int *i, int *curr_spaces, char *path, int size, int inden
     *curr_spaces = 0;
     if (read[*i] == 0)
         return;
-    verif(read, i, curr_spaces, path, size, inden);
+    verif(read, i, curr_spaces, path, size, inden, nb_inden);
 }
 
-void check_indentation(char *path, char *read, int inden, list *l)
+void check_indentation(char *path, char *read, int inden, list *l, int *nb_inde)
 {
     int size = lenght(read);
     int curr_spaces = 0;
@@ -77,5 +78,5 @@ void check_indentation(char *path, char *read, int inden, list *l)
     if (good_extension(path, l) == 0)
         return;
     for (int i = 0; i < size; i++)
-        verif(read, &i, &curr_spaces, path, size, inden);
+        verif(read, &i, &curr_spaces, path, size, inden, nb_inde);
 }
