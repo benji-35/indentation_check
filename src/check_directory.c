@@ -63,7 +63,7 @@ void check_directory(char *path, int inden, list *l, int check_end, int *nb_inde
                 read = read_file(new_path);
                 check_indentation(new_path, read, inden, l, nb_inden);
                 if (check_end)
-                    check_end_of_line(path, read, inden, l, nb_space);
+                    check_end_of_line(new_path, read, inden, l, nb_space);
                 free(read);
             }
             free(_st);

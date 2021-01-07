@@ -30,7 +30,7 @@ void display_help(void)
     printf("\tIn this case, binary will check all files in directory\n");
     printf(" To don't check extension : ./indentation -u .h .a .o\n");
     printf("\tIn this case, binary will note check .h .a .o extension\n");
-    printf(" To change initial indentation : ./indentation 3\n");
+    printf(" To change initial indentation : ./indentation -i 3\n");
     printf("\tIn this case, indentation is set to 3 (initial indentation is 4)\n");
     printf("\nVersion : 1.0\n");
     printf("==========================\n");
