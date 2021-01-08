@@ -22,6 +22,7 @@ void display_help(void)
     printf("3. -u <exentension> -> don't check files with the extension\n");
     printf("4. -i <indentation> -> no -i equal 4 spaces for 1 indentation\n");
     printf("5. -s -> check spaces at the end of lines\n");
+    printf("6. -c <nb column> -> check number of column in line\n");
     printf("\n\nUsage :\n");
     printf(" Normal : ./indentation my_file\n");
     printf(" Many files : ./indentation my_file my_file2 my_file3\n");
@@ -32,6 +33,8 @@ void display_help(void)
     printf("\tIn this case, binary will note check .h .a .o extension\n");
     printf(" To change initial indentation : ./indentation -i 3\n");
     printf("\tIn this case, indentation is set to 3 (initial indentation is 4)\n");
+    printf(" To check max column in line : ./indentation -c 80\n");
+    printf("\tIn this case, the program check if all lines get 80 or minus of column\n");
     printf("\nVersion : 1.0\n");
     printf("==========================\n");
 }

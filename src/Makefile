@@ -18,7 +18,8 @@ SRC = can_open.c	\
 	good_extension.c	\
 	duplicate_str.c	\
 	check_end_of_lines.c	\
-	display_resume.c
+	display_resume.c	\
+	check_column.c
 
 OBJ = $(SRC:.c=.o)
 

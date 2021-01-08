@@ -14,7 +14,7 @@ typedef struct list_s
     struct list_s *next;
 } list;
 
-void display_resume(int nb_inden, int nb_spaces, int verif_space);
+void display_resume(int nb_inden, int nb_spaces, int verif_space, int verif_col, int col);
 void add_node(list **l, char *extension);
 void free_list(list *l);
 int can_open(char *path);
@@ -23,11 +23,12 @@ void check_indentation(char *path, char *read, int inden, list *l, int *nb_inden
 int str_equality(char *str1, char *str2);
 int lenght(char *str);
 void display_help(void);
-void check_directory(char *path, int inden, list *l, int check_end, int *nb_inden, int *nb_space);
+void check_directory(char *path, int inden, list *l, int check_end, int *nb_inden, int *nb_space, int max_col, int *col);
 int conatin_str(char *str, char *container);
 int get_number(char *str);
 char *duplicate_str(char *str);
 void display_wont(list *l);
 void check_end_of_line(char *path, char *read, int inden, list *l, int *nb_spaces);
+void check_column(char *path, char *read, int *nb, int col);
 
 #endif /* !MY_H_ */
