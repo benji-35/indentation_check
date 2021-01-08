@@ -57,15 +57,15 @@ int main(int argc, char **argv)
     }
     display_wont(ext);
     for (int i = 1; i < argc; i++) {
-        if (str_equality(argv[i], "-c"))
-            i += 2;
-        if (str_equality(argv[i], "-s"))
+        if (str_equality(argv[i], "-c")) {
+            i ++;
+        } else if (str_equality(argv[i], "-s")) {
+            //wait
+        } else if (str_equality(argv[i], "-u")) {
+            i += size;
+        } else if (str_equality(argv[i], "-i")) {
             i++;
-        if (str_equality(argv[i], "-u"))
-            i+= 1 + size;
-        if (str_equality(argv[i], "-i"))
-            i+=2;
-        if (str_equality(argv[i], "-*")) {
+        } else if (str_equality(argv[i], "-*")) {
             i++;
             check_directory(argv[i], indentation, ext, check_end, &nb_inden, &nb_spaces, max_col, &nb_col);
         } else if (can_open(argv[i])) {
