@@ -16,6 +16,8 @@ char *get_extension(char *path)
     for (int i = size - 1; i >= 0; i--)
     {
         to_mal++;
+        if (path[i] == '/')
+            return (NULL);
         if (path[i] == '.')
             break;
     }
@@ -29,6 +31,8 @@ char *get_extension(char *path)
 int good_extension(char *path, list *l)
 {
     char *extension = get_extension(path);
+    if (extension == NULL)
+        return (1);
     while (l != NULL)
     {
         if (str_equality(extension, l->extension)) {

@@ -18,6 +18,15 @@ void display_wont(list *l)
     }
 }
 
+void display_want(list *l)
+{
+    while (l != NULL)
+    {
+        printf("extension to check : %s\n", l->extension);
+        l = l->next;
+    }
+}
+
 void add_node(list **l, char *extension)
 {
     list *new_node = malloc(sizeof(list));

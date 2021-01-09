@@ -69,13 +69,15 @@ void verif(char *read, int *i, int *curr_spaces, char *path, int size, int inden
     verif(read, i, curr_spaces, path, size, inden, nb_inden);
 }
 
-void check_indentation(char *path, char *read, int inden, list *l, int *nb_inde)
+void check_indentation(char *path, char *read, int inden, list *l, int *nb_inde, list *ext_o)
 {
     int size = lenght(read);
     int curr_spaces = 0;
     if (read == NULL)
         return;
     if (good_extension(path, l) == 0)
+        return;
+    if (ext_o != NULL && good_extension(path, ext_o))
         return;
     for (int i = 0; i < size; i++)
         verif(read, &i, &curr_spaces, path, size, inden, nb_inde);

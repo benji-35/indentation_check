@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "my.h"
 
+int good_extension(char *path, list *l);
 int get_line_by_char(char *read, int c);
 
 void display_column(char *path, int max_col, int col, int *nb, char *read, int i)
@@ -20,8 +21,12 @@ void display_column(char *path, int max_col, int col, int *nb, char *read, int i
     path, col, max_col);
 }
 
-void check_column(char *path, char *read, int *nb, int col)
+void check_column(char *path, char *read, int *nb, int col, list *l, list *ext_o)
 {
+    if (good_extension(path, l) == 0)
+        return;
+    if (ext_o != NULL && good_extension(path, ext_o))
+        return;
     int curr = 0;
     for (int i = 0; i < lenght(read); i++) {
         if (read[i] == '\n') {
