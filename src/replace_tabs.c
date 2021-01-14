@@ -21,7 +21,6 @@ void replace_tab(char *read, int nb_spaces, char *path)
     if (str_contain_char(read, '\t') == 0)
         return;
     char *result = replace_char_in_str(read, '\t', ' ', nb_spaces);
-    printf("result : %s\n", result);
     int fd = open(path, O_WRONLY, stat);
     write(fd, result, lenght(result));
     free(result);
