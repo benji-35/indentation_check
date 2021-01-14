@@ -19,7 +19,10 @@ SRC = can_open.c	\
 	duplicate_str.c	\
 	check_end_of_lines.c	\
 	display_resume.c	\
-	check_column.c
+	check_column.c	\
+	replace_tabs.c	\
+	str_contain.c	\
+	replace_char_in_str.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -32,12 +35,12 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	ar rc $(NAME) $(OBJ)
 	rm -f $(OBJ)
-	cp $(NAME) ../$(NAME)
+	cp $(NAME) ../libs/$(NAME)
 	cp $(HEADER) ../includes/$(HEADER)
 	rm -f $(NAME)
 
 fclean:
-	rm -f ../$(NAME)
+	rm -f ../libs/$(NAME)
 	rm -f ../includes/$(HEADER)
 
 re:	fclean all

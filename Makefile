@@ -7,7 +7,7 @@
 
 LIBS = -I includes/
 
-INCLUDES = -L . -lmy
+INCLUDES = -L libs/ -lmy
 
 SRC =
 
