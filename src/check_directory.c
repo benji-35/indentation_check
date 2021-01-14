@@ -40,7 +40,7 @@ char *create_good_path(char *path, struct dirent *entry)
     return (new_path);
 }
 
-void check_directory(char *path, int inden, list *l, int check_end, int *nb_inden, int *nb_space, int max_col, int *col, list *ext_o, int replace)
+void check_directory(char *path, int inden, list *l, int check_end, int *nb_inden, int *nb_space, int max_col, int *col, list *ext_o, int replace, int auto_c)
 {
     struct dirent *entry;
     struct stat st;
@@ -58,7 +58,7 @@ void check_directory(char *path, int inden, list *l, int check_end, int *nb_inde
             _st = malloc(sizeof(struct stat));
             stat(new_path, _st);
             if (S_ISDIR(_st->st_mode)) {
-                check_directory(new_path, inden, l, check_end, nb_inden, nb_space, max_col, col, ext_o, replace);
+                check_directory(new_path, inden, l, check_end, nb_inden, nb_space, max_col, col, ext_o, replace, auto_c);
             } else if (can_open(new_path)) {
                 read = read_file(new_path);
                 check_indentation(new_path, read, inden, l, nb_inden, ext_o);
@@ -67,7 +67,9 @@ void check_directory(char *path, int inden, list *l, int check_end, int *nb_inde
                 if (max_col != 0)
                     check_column(new_path, read, col, max_col, l, ext_o);
                 if (replace)
-                    replace_tab(read, inden, new_path);
+                    replace_tab(read, inden, new_path, l, ext_o);
+                if (auto_c)
+                    auto_correct(read, new_path, inden, l, ext_o);
                 free(read);
             }
             free(_st);

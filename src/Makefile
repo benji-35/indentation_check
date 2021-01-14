@@ -22,7 +22,8 @@ SRC = can_open.c	\
 	check_column.c	\
 	replace_tabs.c	\
 	str_contain.c	\
-	replace_char_in_str.c
+	replace_char_in_str.c	\
+	auto_correct.c
 
 OBJ = $(SRC:.c=.o)
 

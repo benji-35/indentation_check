@@ -22,6 +22,7 @@ void add_ext(int index, char **argv, int argc, list **l, int *size)
 
 int main(int argc, char **argv)
 {
+    int auto_c = 0;
     int replace = 0;
     int indentation = 4;
     int size = 0;
@@ -61,6 +62,10 @@ int main(int argc, char **argv)
             check_end = 1;
         if (str_equality(argv[i], "-r"))
             replace = 1;
+        if (str_equality(argv[i], "-a")) {
+            replace = 1;
+            auto_c = 1;
+        }
     }
     display_wont(ext);
     display_want(ext_o);
@@ -73,13 +78,15 @@ int main(int argc, char **argv)
             i ++;
         } else if (str_equality(argv[i], "-s")) {
             //wait
+        } else if (str_equality(argv[i], "-a")) {
+            //wait
         } else if (str_equality(argv[i], "-u")) {
             i += size;
         } else if (str_equality(argv[i], "-i")) {
             i++;
         } else if (str_equality(argv[i], "-*")) {
             i++;
-            check_directory(argv[i], indentation, ext, check_end, &nb_inden, &nb_spaces, max_col, &nb_col, ext_o, replace);
+            check_directory(argv[i], indentation, ext, check_end, &nb_inden, &nb_spaces, max_col, &nb_col, ext_o, replace, auto_c);
         } else if (can_open(argv[i])) {
             char *read = read_file(argv[i]);
             check_indentation(argv[i], read, indentation, ext, &nb_inden, ext_o);
@@ -88,7 +95,9 @@ int main(int argc, char **argv)
             if (max_col != 0)
                 check_column(argv[i], read, &nb_col, max_col, ext, ext_o);
             if (replace)
-                replace_tab(read, indentation, argv[i]);
+                replace_tab(read, indentation, argv[i], ext, ext_o);
+            if (auto_c)
+                auto_correct(read, argv[i], indentation, ext, ext_o);
             free(read);
         }
     }
