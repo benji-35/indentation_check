@@ -68,11 +68,12 @@ int main(int argc, char **argv)
             replace = 1;
             auto_c = 1;
         }
-        if (str_equality(argv[i], "-l"))
+        if (str_equality(argv[i], "-l")) {
             nb_line = get_number(argv[i + 1]);
+            if (nb_line <= 0)
+                nb_line = 20;
+        }
     }
-    if (nb_line <= 0)
-        nb_line = 20;
     display_wont(ext);
     display_want(ext_o);
     for (int i = 1; i < argc; i++) {
