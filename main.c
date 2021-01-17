@@ -103,6 +103,8 @@ int main(int argc, char **argv)
     }
     free_list(ext);
     free_list(ext_o);
+    if (auto_c)
+        printf("\nAuto correction done");
     display_resume(nb_inden, nb_spaces, check_end, max_col, nb_col);
     return (0);
 }

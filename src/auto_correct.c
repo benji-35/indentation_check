@@ -23,10 +23,15 @@ int to_add_indentation(int nb, int indentation)
     float calc = (float)nb / (float)indentation;
     while (calc > 1.0f)
         calc = calc - 1.0f;
-    float get = 1.0f - calc;
-    if (get < 0.5f)
-        return ((-indentation) * get);
-    return ((indentation * get));
+    float r = (1.0f - calc) * indentation;
+    if (calc <= 0.5f) {
+        r = calc * indentation;
+        r = -r;
+        return ((int)r);
+    }
+    if (r < 0)
+        r = r * -1;
+    return (r);
 }
 
 void auto_correct_spaces(char **line)
