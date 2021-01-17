@@ -27,7 +27,8 @@ SRC = can_open.c	\
 	concat_str.c	\
 	copy_str.c	\
 	split_str.c	\
-	split_to_str.c
+	split_to_str.c	\
+	rewrite_file.c
 
 OBJ = $(SRC:.c=.o)
 

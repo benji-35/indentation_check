@@ -36,5 +36,6 @@ void auto_correct(char *read, char *path, int indentation, list *l, list *ext_o)
 void free_split(char **split);
 char **split_str(char *str, char spliter);
 char *split_to_char(char **split, char *separator);
+void re_write(char * path, char *buffer);
 
 #endif /* !MY_H_ */

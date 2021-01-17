@@ -22,10 +22,11 @@ int nb_split(char *str, char splitter)
 {
     int size = lenght(str);
     int result = 0;
-
+    if (size == 0)
+        return (0);
     if (str[size - 1] == splitter)
         result--;
-    for (int i = 0; str[i] != 0; i++) {
+    for (int i = 0; i < size; i++) {
         if (str[i] == splitter)
             result++;
     }
@@ -52,6 +53,8 @@ void complete_str_split(char *str, int size, char *result)
 
 char **split_str(char *str, char spliter)
 {
+    if (str == NULL || lenght(str) == 0)
+        return (NULL);
     int size = lenght(str);
     int nbsplit = nb_split(str, spliter);
     char **result = malloc(sizeof(char *) * (nbsplit + 2));

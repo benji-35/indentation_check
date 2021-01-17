@@ -33,4 +33,5 @@ char *split_to_char(char **split, char *separator)
             result = tampon;
         }
     }
+    return (result);
 }
