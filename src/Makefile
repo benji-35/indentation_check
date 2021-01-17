@@ -29,7 +29,8 @@ SRC = can_open.c	\
 	split_str.c	\
 	split_to_str.c	\
 	rewrite_file.c	\
-	move_str.c
+	move_str.c	\
+	check_lines.c
 
 OBJ = $(SRC:.c=.o)
 

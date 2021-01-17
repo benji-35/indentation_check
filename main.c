@@ -32,6 +32,8 @@ int main(int argc, char **argv)
     int nb_inden = 0;
     int max_col = 0;
     int nb_col = 0;
+    int error_line = 0;
+    int nb_line = 0;
     list *ext = NULL;
     list *ext_o = NULL;
     if (argc < 2) {
@@ -66,7 +68,11 @@ int main(int argc, char **argv)
             replace = 1;
             auto_c = 1;
         }
+        if (str_equality(argv[i], "-l"))
+            nb_line = get_number(argv[i + 1]);
     }
+    if (nb_line <= 0)
+        nb_line = 20;
     display_wont(ext);
     display_want(ext_o);
     for (int i = 1; i < argc; i++) {
@@ -82,11 +88,11 @@ int main(int argc, char **argv)
             //wait
         } else if (str_equality(argv[i], "-u")) {
             i += size;
-        } else if (str_equality(argv[i], "-i")) {
+        } else if (str_equality(argv[i], "-i") || str_equality(argv[i], "-l")) {
             i++;
         } else if (str_equality(argv[i], "-*")) {
             i++;
-            check_directory(argv[i], indentation, ext, check_end, &nb_inden, &nb_spaces, max_col, &nb_col, ext_o, replace, auto_c);
+            check_directory(argv[i], indentation, ext, check_end, &nb_inden, &nb_spaces, max_col, &nb_col, ext_o, replace, auto_c, nb_line, &error_line);
         } else if (can_open(argv[i])) {
             char *read = read_file(argv[i]);
             check_indentation(argv[i], read, indentation, ext, &nb_inden, ext_o);
@@ -98,6 +104,8 @@ int main(int argc, char **argv)
                 replace_tab(read, indentation, argv[i], ext, ext_o);
             if (auto_c)
                 auto_correct(read, argv[i], indentation, ext, ext_o);
+            if (nb_line)
+                check_line(read, argv[i], ext, ext_o, nb_line, &error_line);
             free(read);
         }
     }
@@ -105,6 +113,6 @@ int main(int argc, char **argv)
     free_list(ext_o);
     if (auto_c)
         printf("\nAuto correction done");
-    display_resume(nb_inden, nb_spaces, check_end, max_col, nb_col);
+    display_resume(nb_inden, nb_spaces, check_end, max_col, nb_col, nb_line, error_line);
     return (0);
 }

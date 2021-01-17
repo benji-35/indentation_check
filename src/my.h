@@ -14,7 +14,7 @@ typedef struct list_s
     struct list_s *next;
 } list;
 
-void display_resume(int nb_inden, int nb_spaces, int verif_space, int verif_col, int col);
+void display_resume(int nb_inden, int nb_spaces, int verif_space, int verif_col, int col, int nb_line, int nb_error_line);
 void add_node(list **l, char *extension);
 void free_list(list *l);
 int can_open(char *path);
@@ -23,7 +23,8 @@ void check_indentation(char *path, char *read, int inden, list *l, int *nb_inden
 int str_equality(char *str1, char *str2);
 int lenght(char *str);
 void display_help(void);
-void check_directory(char *path, int inden, list *l, int check_end, int *nb_inden, int *nb_space, int max_col, int *col, list *ext_o, int replace, int auto_c);
+void check_directory(char *path, int inden, list *l, int check_end, int *nb_inden, int *nb_space, int max_col, int *col,
+    list *ext_o, int replace, int auto_c, int lines, int *error_line);
 int conatin_str(char *str, char *container);
 int get_number(char *str);
 char *duplicate_str(char *str);
@@ -39,5 +40,6 @@ char *split_to_char(char **split, char *separator);
 void re_write(char * path, char *buffer);
 char *concat_str(char *str1, char *str2);
 char *move_str_left(char *str, int nb);
+void check_line(char *read, char *path, list *l, list *ext_o, int theorics, int *errors);
 
 #endif /* !MY_H_ */
