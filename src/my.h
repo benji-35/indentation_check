@@ -33,5 +33,8 @@ void check_column(char *path, char *read, int *nb, int col, list *l, list *ext_o
 void display_want(list *l);
 void replace_tab(char *read, int nb_spaces, char *path, list *l, list *ext_o);
 void auto_correct(char *read, char *path, int indentation, list *l, list *ext_o);
+void free_split(char **split);
+char **split_str(char *str, char spliter);
+char *split_to_char(char **split, char *separator);
 
 #endif /* !MY_H_ */

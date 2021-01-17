@@ -9,6 +9,15 @@
 
 int lenght(char *str);
 
+void free_split(char **split)
+{
+    int u = 0;
+    for (; split[u][0] != 0; u++)
+        free(split[u]);
+    free(split[u + 1]);
+    free(split);
+}
+
 int nb_split(char *str, char splitter)
 {
     int size = lenght(str);
