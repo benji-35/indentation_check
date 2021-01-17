@@ -37,5 +37,6 @@ void free_split(char **split);
 char **split_str(char *str, char spliter);
 char *split_to_char(char **split, char *separator);
 void re_write(char * path, char *buffer);
+char *concat_str(char *str1, char *str2);
 
 #endif /* !MY_H_ */

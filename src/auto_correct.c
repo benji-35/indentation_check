@@ -17,17 +17,28 @@ int good_extension(char *path, list *l);
 
 void auto_correct_spaces(char **line)
 {
-
+    char *l = *line;
+    int size = lenght(l);
+    int nb = 0;
+    for (int i = size - 1; i >= 0; i--) {
+        if (l[i] != ' ' && l[i] != '\t')
+            break;
+        nb++;
+    }
+    if (nb == 0)
+        return;
+    (*line)[size - nb] = 0;
 }
 
 void auto_correct_inden(char **line)
 {
-
+    char *l = *line;
 }
 
 void auto_correct(char *read, char *path, int indentation, list *l, list *ext_o)
 {
     char back = '\n';
+    char *back_str = "\n";
     if (read == NULL)
         return;
     if (good_extension(path, l) == 0)
@@ -37,13 +48,21 @@ void auto_correct(char *read, char *path, int indentation, list *l, list *ext_o)
     char **lines = split_str(read, '\n');
     if (lines == NULL)
         return;
+    char *tampon = NULL;
+    char *result = malloc(sizeof(char));
+    result[0] = 0;
     for (int i = 0; lines[i][0] != 0; i++) {
         if (lines[i] != NULL) {
             auto_correct_spaces(&(lines[i]));
             auto_correct_inden(&(lines[i]));
+            tampon = concat_str(result, lines[i]);
+            free(result);
+            result = tampon;
+            tampon = concat_str(result, back_str);
+            free(result);
+            result = tampon;
         }
     }
-    char *result = split_to_char(lines, &back);
     re_write(path, result);
     free_split(lines);
     free(result);

@@ -12,8 +12,10 @@ int lenght(char *str);
 void free_split(char **split)
 {
     int u = 0;
-    for (; split[u][0] != 0; u++)
+    for (int i = 0; split[i][0] != 0; i++) {
+        u = i;
         free(split[u]);
+    }
     free(split[u + 1]);
     free(split);
 }
@@ -44,8 +46,13 @@ int size_before_splitter(char *str, char splitter)
     return (i);
 }
 
-void complete_str_split(char *str, int size, char *result)
+void complete_str_split(char *str, int size, char *result, int help)
 {
+    if (help) {
+        result[0] = ' ';
+        result[1] = 0;
+        return;
+    }
     for (int i = 0; i < size; i++)
         result[i] = str[i];
     result[size] = 0;
@@ -59,12 +66,20 @@ char **split_str(char *str, char spliter)
     int nbsplit = nb_split(str, spliter);
     char **result = malloc(sizeof(char *) * (nbsplit + 2));
     int curr = 0;
+    int help = 0;
     for (int i = 0; i < size; i++) {
         int to_mal = size_before_splitter(str + i, spliter);
+        if (to_mal == 0) {
+            help = 1;
+            to_mal++;
+        }
         result[curr] = malloc(sizeof(char) * (to_mal + 1));
-        complete_str_split(str + i, to_mal, result[curr]);
+        complete_str_split(str + i, to_mal, result[curr], help);
+        if (help)
+            to_mal--;
         curr ++;
         i += to_mal;
+        help = 0;
     }
     result[nbsplit + 1] = malloc(sizeof(char));
     result[nbsplit + 1][0] = 0;
