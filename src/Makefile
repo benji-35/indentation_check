@@ -23,7 +23,11 @@ SRC = can_open.c	\
 	replace_tabs.c	\
 	str_contain.c	\
 	replace_char_in_str.c	\
-	auto_correct.c
+	auto_correct.c	\
+	concat_str.c	\
+	copy_str.c	\
+	split_str.c	\
+	split_to_str.c
 
 OBJ = $(SRC:.c=.o)
 
