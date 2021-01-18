@@ -19,6 +19,6 @@ void display_resume(int nb_inden, int nb_spaces, int verif_space, int verif_col,
         printf("Column error : %d\n", col);
     if (nb_line)
         printf("Line in function error : %d\n", nb_error_line);
-    printf("\nversion : 1.7\n");
+    printf("\nversion : 1.9\n");
     printf("===========================\n");
 }
