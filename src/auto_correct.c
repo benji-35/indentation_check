@@ -111,6 +111,8 @@ void auto_correct(char *read, char *path, int indentation, list *l, list *ext_o)
             result = tampon;
         }
     }
+    if (read[lenght(read) - 1] != '\n')
+        result[lenght(result) - 1] = 0;
     re_write(path, result);
     free_split(lines);
     free(result);
