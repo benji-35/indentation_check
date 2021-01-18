@@ -10,14 +10,20 @@
 #include <stdio.h>
 #include "my.h"
 
-void add_ext(int index, char **argv, int argc, list **l, int *size)
+int add_ext(int index, char **argv, int argc, list **l, int *size)
 {
+    if (index + 1 >= argc)
+        return (84);
     for (int i = index + 1; i < argc; i++) {
-        if (argv[i][0] != '.')
+        if (argv[i][0] != '.') {
+            if (i == index + 1)
+                return (84);
             break;
+        }
         *size = *size + 1;
         add_node(l, argv[i]);
     }
+    return (0);
 }
 
 int main(int argc, char **argv)
@@ -42,19 +48,39 @@ int main(int argc, char **argv)
     }
     for (int i = 1; i < argc; i++) {
         if (str_equality(argv[i], "-i")) {
+            if (i + 1 >= argc) {
+                printf("[\e[31;1;5mERROR\e[0m] -i <indentation (> 0)>\n");
+                return (84);
+            }
             indentation = get_number(argv[i + 1]);
-            if (indentation <= 0)
-                indentation = 4;
+            if (nb_line <= 0) {
+                printf("[\e[31;1;5mERROR\e[0m] -i <indentation (> 0)>\n");
+                return (84);
+            }
         }
         if (str_equality(argv[i], "-c")) {
+            if (i + 1 >= argc) {
+                printf("[\e[31;1;5mERROR\e[0m] -c <max column in line (> 0)>\n");
+                return (84);
+            }
             max_col = get_number(argv[i + 1]);
-            if (max_col <= 0)
-                max_col = 80;
+            if (nb_line <= 0) {
+                printf("[\e[31;1;5mERROR\e[0m] -i <max column in line (> 0)>\n");
+                return (84);
+            }
         }
-        if (str_equality(argv[i], "-o"))
-            add_ext(i, argv, argc, &ext_o, &size_o);
-        if (str_equality(argv[i], "-u"))
-            add_ext(i, argv, argc, &ext, &size);
+        if (str_equality(argv[i], "-o")) {
+            if (add_ext(i, argv, argc, &ext_o, &size_o) != 0) {
+                printf("[\e[31;1;5mERROR\e[0m] -o <extensions to check>\n");
+                return (84);
+            }
+        }
+        if (str_equality(argv[i], "-u")) {
+            if (add_ext(i, argv, argc, &ext, &size) != 0) {
+                printf("[\e[31;1;5mERROR\e[0m] -u <extensions to don't check>\n");
+                return (84);
+            }
+        }
         if (str_equality(argv[i], "-h")) {
             free_list(ext);
             display_help();
@@ -69,9 +95,25 @@ int main(int argc, char **argv)
             auto_c = 1;
         }
         if (str_equality(argv[i], "-l")) {
+            if (i + 1 >= argc) {
+                printf("[\e[31;1;5mERROR\e[0m] -l <nb line in function (> 0)>\n");
+                return (84);
+            }
             nb_line = get_number(argv[i + 1]);
-            if (nb_line <= 0)
-                nb_line = 20;
+            if (nb_line <= 0) {
+                printf("[\e[31;1;5mERROR\e[0m] -l <nb line in function (> 0)>\n");
+                return (84);
+            }
+        }
+        if (str_equality(argv[i], "-*")) {
+            if (i + 1 >= argc) {
+                printf("[\e[31;1;5mERROR\e[0m] -* <directory>\n");
+                return (84);
+            }
+            if (is_directory(argv[i + 1]) != 1) {
+                printf("[\e[31;1;5mERROR\e[0m] -* <directory>\n");
+                return (84);
+            }
         }
     }
     display_wont(ext);

@@ -41,5 +41,6 @@ void re_write(char * path, char *buffer);
 char *concat_str(char *str1, char *str2);
 char *move_str_left(char *str, int nb);
 void check_line(char *read, char *path, list *l, list *ext_o, int theorics, int *errors);
+int is_directory(char *path);
 
 #endif /* !MY_H_ */

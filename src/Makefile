@@ -30,7 +30,8 @@ SRC = can_open.c	\
 	split_to_str.c	\
 	rewrite_file.c	\
 	move_str.c	\
-	check_lines.c
+	check_lines.c	\
+	is_directory.c
 
 OBJ = $(SRC:.c=.o)
 
