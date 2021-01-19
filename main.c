@@ -64,8 +64,8 @@ int main(int argc, char **argv)
                 return (84);
             }
             max_col = get_number(argv[i + 1]);
-            if (nb_line <= 0) {
-                printf("[\e[31;1;5mERROR\e[0m] -i <max column in line (> 0)>\n");
+            if (max_col <= 0) {
+                printf("[\e[31;1;5mERROR\e[0m] -c <max column in line (> 0)>\n");
                 return (84);
             }
         }
