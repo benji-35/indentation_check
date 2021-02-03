@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     list *ext = NULL;
     list *ext_o = NULL;
     if (argc < 2) {
-        printf("[\e[5;31mERROR\e[0m] ./indentation <file> ...\n");
+        printf("[\e[5;31mERROR\e[0m] ./indentation -h\n");
         return (84);
     }
     for (int i = 1; i < argc; i++) {
