@@ -53,7 +53,7 @@ int main(int argc, char **argv)
                 return (84);
             }
             indentation = get_number(argv[i + 1]);
-            if (nb_line <= 0) {
+            if (indentation <= 0) {
                 printf("[\e[31;1;5mERROR\e[0m] -i <indentation (> 0)>\n");
                 return (84);
             }
