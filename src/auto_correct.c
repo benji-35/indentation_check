@@ -24,7 +24,7 @@ int to_add_indentation(int nb, int indentation)
     while (calc > 1.0f)
         calc = calc - 1.0f;
     float r = (1.0f - calc) * indentation;
-    if (calc <= 0.5f) {
+    if (calc < 0.5f) {
         r = calc * indentation;
         r = -r;
         return ((int)r);
@@ -65,9 +65,9 @@ void auto_correct_inden(char **line, int indentation)
             nb++;
     }
     to_add = to_add_indentation(nb, indentation);
-    if (to_add == 0)
+    if (to_add == 0) {
         return;
-    if (to_add < 0) {
+    } else if (to_add < 0) {
         tampon = move_str_left(l, (to_add * -1));
         free(*line);
         (*line) = tampon;
@@ -105,10 +105,8 @@ void auto_correct(char *read, char *path, int indentation, list *l, list *ext_o)
             auto_correct_inden(&(lines[i]), indentation);
             tampon = concat_str(result, lines[i]);
             free(result);
-            result = tampon;
-            tampon = concat_str(result, back_str);
-            free(result);
-            result = tampon;
+            result = concat_str(tampon, back_str);
+            free(tampon);
         }
     }
     if (read[lenght(read) - 1] != '\n')

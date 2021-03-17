@@ -49,7 +49,6 @@ void check_directory(char *path, int inden, list *l, int check_end, int *nb_inde
     char *new_path = NULL;
     char *read = NULL;
     DIR *dir;
-    time_t time;
     stat(path, &st);
     dir = opendir(path);
     entry = readdir(dir);
