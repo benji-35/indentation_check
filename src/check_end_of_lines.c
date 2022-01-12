@@ -24,15 +24,16 @@ void display_end_of_line(char c, char *path, int index, char *read, int *nb_spac
 
 void check_end_of_line(char *path, char *read, int inden, list *l, int *nb_space, list *ext_o)
 {
-    int size = lenght(read);
     if (read == NULL)
         return;
+    int size = lenght(read);
     if (good_extension(path, l) == 0)
         return;
     if (ext_o != NULL && good_extension(path, ext_o))
         return;
     for (int i = 0; i <= size; i++) {
-        if (read[i] == '\n' || i == size)
+        if (read[i] == '\n' || i == size) {
             display_end_of_line(read[i - 1], path, i, read, nb_space);
+        }
     }
 }

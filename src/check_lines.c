@@ -15,12 +15,12 @@ int get_line_by_char(char *read, int c);
 void disp_lines(char *path, int nb, int theorics, int index, char *read, int *errors)
 {
     int line = get_line_by_char(read, (index - nb));
-    int curr = 0;
+    int curr = 1;
     for (int i = index - nb; i < index; i++) {
         if (read[i] == '\n')
             curr++;
     }
-    if (curr <= theorics + 1)
+    if (curr <= theorics - 1)
         return;
     *errors = *errors + 1;
     printf("[\e[1;5;36mLINES IN FUNCTION\e[0m] line = %d, path = %s -> get : %d, want : %d\n", line, path, curr - 1, theorics);
