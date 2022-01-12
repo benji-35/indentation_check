@@ -20,7 +20,7 @@ void disp_lines(char *path, int nb, int theorics, int index, char *read, int *er
         if (read[i] == '\n')
             curr++;
     }
-    if (curr <= theorics - 1)
+    if (curr <= theorics)
         return;
     *errors = *errors + 1;
     printf("[\e[1;5;36mLINES IN FUNCTION\e[0m] line = %d, path = %s -> get : %d, want : %d\n", line, path, curr - 1, theorics);
