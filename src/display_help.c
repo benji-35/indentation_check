@@ -41,6 +41,6 @@ void display_help(void)
     printf("\tIn this case, indentation is set to 3 (initial indentation is 4)\n");
     printf(" To check max column in line :\n ./indentation -c 80\n");
     printf("\tIn this case, the program check if all lines get 80 or minus of column\n");
-    printf("\nVersion : 1.9\n");
+    printf("\nVersion : 1.9.2\n");
     printf("==========================\n");
 }
