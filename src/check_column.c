@@ -17,8 +17,8 @@ void display_column(char *path, int max_col, int col, int *nb, char *read, int i
     if (col <= max_col)
         return;
     *nb = *nb + 1;
-    printf("[\e[1;5;33mCOLUMN\e[0m] line: %d, path : %s get %d column, want : %d\n", get_line_by_char(read, i),
-    path, col, max_col);
+    printf("[\e[1;5;33mCOLUMN\e[0m] line: %d, path : %s:%d get %d column, want : %d\n", get_line_by_char(read, i),
+    path, get_line_by_char(read, i), col, max_col);
 }
 
 void check_column(char *path, char *read, int *nb, int col, list *l, list *ext_o)

@@ -17,8 +17,8 @@ void display_end_of_line(char c, char *path, int index, char *read, int *nb_spac
 {
     if (c != ' ')
         return;
-    printf("[\e[1;5;31mEND SPACE\e[0m] line: %d, path : %s\n", get_line_by_char(read, index),
-    path);
+    printf("[\e[1;5;31mEND SPACE\e[0m] line: %d, path : %s:%d\n", get_line_by_char(read, index),
+    path, get_line_by_char(read, index));
     *nb_spaces = *nb_spaces + 1;
 }
 

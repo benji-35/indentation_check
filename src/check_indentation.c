@@ -37,8 +37,8 @@ void display_checking(int __char, int number, char *path, char *read, int inden,
 {
     if (divisible_by(number, inden) || number == 0)
         return;
-    printf("[\e[1;5;32mINDENTATION\e[0m] line: %d, path : %s get %d spaces, want : %d\n", get_line_by_char(read, __char),
-    path, number, inden);
+    printf("[\e[1;5;32mINDENTATION\e[0m] line: %d, path : %s:%d get %d spaces, want : %d\n", get_line_by_char(read, __char),
+    path, get_line_by_char(read, __char), number, inden);
     *nb_inden = *nb_inden + 1;
 }
 

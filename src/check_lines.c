@@ -23,7 +23,7 @@ void disp_lines(char *path, int nb, int theorics, int index, char *read, int *er
     if (curr <= theorics + 1)
         return;
     *errors = *errors + 1;
-    printf("[\e[1;5;36mLINES IN FUNCTION\e[0m] line = %d, path = %s -> get : %d, want : %d\n", line, path, curr - 1, theorics);
+    printf("[\e[1;5;36mLINES IN FUNCTION\e[0m] line = %d, path = %s:%d -> get : %d, want : %d\n", line, path, line, curr - 1, theorics);
 }
 
 void check_line(char *read, char *path, list *l, list *ext_o, int theorics, int *errors)
